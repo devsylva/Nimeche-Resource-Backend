@@ -1,4 +1,8 @@
 from django.db import models
+from gdstorage.storage import GoogleDriveStorage
+
+# Define Google Drive Storage
+gd_storage = GoogleDriveStorage()
 
 
 # Create your models here.
@@ -6,7 +10,7 @@ from django.db import models
 class Material(models.Model):
     title = models.CharField(max_length=250)
     description = models.TextField()
-    file = models.FileField()
+    file = models.FileField(upload_to='media', storage=gd_storage)
     uploaded_at = models.DateTimeField(auto_now_add=True)
 
 
